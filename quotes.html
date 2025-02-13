@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of the Day</title>
+    <script>
+        
+        const quotes = [
+            "The world is extremely interesting to a joyful soul.” — Alexandra Stoddard",
+            "I wish I could tell you it gets better, but it doesn’t get better. You get better.” —Joan Rivers",
+            "“Success is falling nine times and getting up ten.” —Jon Bon Jovi",
+            "Do not be afraid to be afraid.” —Maurice Chevalier",
+            "“If your ship doesn’t come in, swim out to it!” —Jonathan Winters"
+        ];
+
+        function showQuote() {
+            let userNumber = parseInt(prompt("Enter a number:"));
+            if (isNaN(userNumber)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+            let index = userNumber % 5; 
+            document.getElementById("quoteDisplay").innerText = quotes[index];
+        }
+
+        let favoriteWebsites = [
+            "https://www.google.com",
+            "https://www.wikipedia.org",
+            "https://www.github.com"
+        ];
+
+        function displayWebsites() {
+            let list = document.getElementById("websiteList");
+            list.innerHTML = ""; // Clear list before adding new items
+            favoriteWebsites.forEach((url) => {
+                let listItem = document.createElement("li");
+                let link = document.createElement("a");
+                link.href = url;
+                link.target = "_blank";
+                link.innerText = url;
+                listItem.appendChild(link);
+                list.appendChild(listItem);
+            });
+        }
+
+        function addWebsite() {
+            let newWebsite = prompt("Enter your favorite website URL:");
+            if (newWebsite) {
+                favoriteWebsites.push(newWebsite);
+                favoriteWebsites.shift(); 
+                displayWebsites(); 
+            }
+        }
+        window.onload = function() {
+            displayWebsites();
+        };
+    </script>
+</head>
+<body>
+
+    <h1>Quote of the Day</h1>
+    <p>Click the button below to get your quote:</p>
+    <button onclick="showQuote()">Get Quote</button>
+    <p id="quoteDisplay"><em>Your quote will appear here.</em></p>
+
+    <h2>Favorite Websites</h2>
+    <ul id="websiteList"></ul>
+    <button onclick="addWebsite()">Add a Favorite Website</button>
+
+</body>
+</html>
